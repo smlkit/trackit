@@ -2,8 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, :root {
+html,
+body,
+:root {
   height: 100%;
   background-color: #000624;
   color-scheme: dark;
+}
+
+@layer components {
+  /* main */
+  .main-container {
+    @apply flex flex-1 h-full bg-dark;
+  }
+
+  .sidebar {
+    @apply h-full bg-lighter hidden md:flex flex-col gap-y-4 w-[300px] pl-10 pt-10;
+  }
+
+  .sidebar__item {
+    @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-blue-accent transition py-1 text-main-text;
+  }
 }
