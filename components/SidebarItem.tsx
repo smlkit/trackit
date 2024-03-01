@@ -14,7 +14,7 @@ const SidebarItem = ({ icon: Icon, label, active, href }: SidebarItemProps) => {
   return (
     <Link
       href={href}
-      className={twMerge(`sidebar__item`, active && "text-white")}
+      className={twMerge(`sidebar__item`, active && "text-blue-accent")}
     >
       <Icon size={24}></Icon>
       <p className="truncate w-full">{label}</p>
