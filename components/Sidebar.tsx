@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { usePathname } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { FaRegCircleUser as AccountIcon } from "react-icons/fa6";
 import { LuLayoutDashboard as DashboardIcon } from "react-icons/lu";
 import { FiPlus as AddNewIcon } from "react-icons/fi";
+import { RiLogoutBoxLine as LogoutIcon } from "react-icons/ri";
+
 import SidebarItem from "./SidebarItem";
 
 type SidebarProps = {
@@ -13,7 +15,18 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ children }: SidebarProps) => {
+  const router = useRouter();
+  const supabaseClient = useSupabaseClient();
   const pathname = usePathname();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    router.refresh();
+
+    if (error) {
+      console.log(error.message);
+    }
+  };
 
   const routes = useMemo(
     () => [
@@ -41,9 +54,15 @@ const Sidebar = ({ children }: SidebarProps) => {
   return (
     <div className="flex h-full">
       <nav className="sidebar">
-        {routes.map((item) => (
-          <SidebarItem key={item.label} {...item}></SidebarItem>
-        ))}
+        <div className="flex flex-col gap-y-3">
+          {routes.map((item) => (
+            <SidebarItem key={item.label} {...item}></SidebarItem>
+          ))}
+        </div>
+        <button onClick={handleLogout} className={"sidebar__item-logout"}>
+          <LogoutIcon size={20} />
+          Logout
+        </button>
       </nav>
       <main className="main-container">{children}</main>
     </div>

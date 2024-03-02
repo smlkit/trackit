@@ -17,10 +17,14 @@ body,
   }
 
   .sidebar {
-    @apply h-full bg-lighter hidden md:flex flex-col gap-y-4 w-[300px] pl-10 pt-10;
+    @apply h-full flex justify-between bg-lighter flex-col w-[300px] pt-20 pl-10 pb-8;
   }
 
   .sidebar__item {
     @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-blue-accent transition py-1 text-main-text;
+  }
+
+  .sidebar__item-logout {
+    @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-status-red transition py-1 text-main-text;
   }
 }
