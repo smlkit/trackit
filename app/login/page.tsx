@@ -13,7 +13,6 @@ const Login = () => {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const { session } = useSessionContext();
-  console.log(session);
 
   useEffect(() => {
     if (session) {

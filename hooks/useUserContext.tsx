@@ -5,13 +5,13 @@ import {
   useUser as useSupaUser,
 } from "@supabase/auth-helpers-react";
 
-interface UserDetails {
+type UserDetails = {
   id: string;
   first_name: string;
   last_name: string;
   full_name?: string;
   avatar_url?: string;
-}
+};
 
 type UserContextType = {
   accessToken: string | null;
@@ -40,28 +40,20 @@ export const UserContextProvider = (props: Props) => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
 
   const getUserDetails = () => supabase.from("users").select("*").single();
-  const getSubscriptions = () =>
-    supabase
-      .from("subscriptions")
-      .select("*, prices(*, products(*))")
-      .in("status", ["trialing", "active"])
-      .single();
 
   useEffect(() => {
     if (user && !isLoadingData && !userDetails) {
       setIsLoadingData(true);
 
-      Promise.allSettled([getUserDetails(), getSubscriptions()]).then(
-        (results) => {
-          const userDetailsPromise = results[0];
+      Promise.allSettled([getUserDetails()]).then((results) => {
+        const userDetailsPromise = results[0];
 
-          if (userDetailsPromise.status === "fulfilled") {
-            setUserDetails(userDetailsPromise.value.data as UserDetails);
-          }
+        if (userDetailsPromise.status === "fulfilled") {
+          setUserDetails(userDetailsPromise.value.data as UserDetails);
+        }
 
-          setIsLoadingData(false);
-        },
-      );
+        setIsLoadingData(false);
+      });
     } else if (!user && !isLoadingUser && !isLoadingData) {
       setUserDetails(null);
     }
@@ -81,7 +73,7 @@ export const useUser = () => {
   const context = useContext(UserContext);
 
   if (context === undefined) {
-    throw new Error("useUser must be used within UserContextProvider");
+    throw new Error("useUserContext must be used within UserContextProvider");
   }
 
   return context;
