@@ -27,4 +27,8 @@ body,
   .sidebar__item-logout {
     @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-status-red transition py-1 text-main-text;
   }
+
+  .input {
+    @apply bg-transparent text-main-text w-72 block px-4 py-3 rounded-lg border border-solid border-secondary-text focus:outline-none;
+  }
 }

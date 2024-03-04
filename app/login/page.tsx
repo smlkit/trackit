@@ -29,7 +29,14 @@ const Login = () => {
       appearance={{
         theme: ThemeSupa,
         variables: {
-          default: { colors: { brand: "#4361EE", brandAccent: "#4361EE" } },
+          default: {
+            colors: {
+              brand: "#4361EE",
+              brandAccent: "#4361EE",
+              inputBorder: "#4361EE",
+              inputBackground: "#4361EE",
+            },
+          },
         },
       }}
     />
