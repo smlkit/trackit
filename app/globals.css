@@ -31,4 +31,8 @@ body,
   .input {
     @apply bg-transparent text-main-text w-72 block px-4 py-3 rounded-lg border border-solid border-secondary-text focus:outline-none;
   }
+
+  .main-btn {
+    @apply bg-blue-accent text-main-text w-72 block px-4 py-3 rounded-lg focus:outline-none hover:opacity-90 transition;
+  }
 }

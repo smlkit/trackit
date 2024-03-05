@@ -6,8 +6,9 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import uniqid from "uniqid";
 
-import Input from "@/components/Input";
 import { useUserContext } from "@/hooks/useUserContext";
+import Input from "@/components/Input";
+import Button from "@/components/Botton";
 
 const NewTask = () => {
   const supabaseClient = useSupabaseClient();
@@ -79,31 +80,33 @@ const NewTask = () => {
 
   return (
     <div>
-      <div>NewTask</div>
-      <form
-        onSubmit={handleSubmit((values) => {
-          console.log("handleSubmit called");
-          onSubmit(values);
-        })}
-      >
+      <h1>NewTask</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
         <Input
+          className="input"
           placeholder="Title"
           type="text"
           {...register("title", { required: true })}
         />
+        {/* TODO: fix texterea */}
         <Input
+          className="input"
           placeholder="Description"
           type="textarea"
           {...register("description", { required: true })}
         />
         <Input
+          className="input"
           id="attachment"
           type="file"
           {...register("attachment", { required: true })}
         />
-        <button type="submit" disabled={isLoading}>
-          Submit
-        </button>
+        <Button
+          type="submit"
+          className="main-btn"
+          disabled={isLoading}
+          text="Submit"
+        />
       </form>
     </div>
   );
