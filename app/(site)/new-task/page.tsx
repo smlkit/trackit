@@ -9,16 +9,21 @@ import uniqid from "uniqid";
 import { useUserContext } from "@/hooks/useUserContext";
 import Input from "@/components/Input";
 import Button from "@/components/Botton";
+import Select from "@/components/Select";
+import { tags } from "../../../shared/tags";
+import useGetUsers from "@/hooks/useGetUsers";
 
 const NewTask = () => {
   const supabaseClient = useSupabaseClient();
   const { user } = useUserContext();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(user);
+  const { users } = useGetUsers();
+  console.log(users);
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
+    console.log(values);
+    // return;
     try {
       setIsLoading(true);
       console.log("press submit");
@@ -28,7 +33,6 @@ const NewTask = () => {
         console.log("Load image!");
         return;
       }
-      console.log(imageFile);
 
       const uniqueID = uniqid();
 
@@ -40,11 +44,9 @@ const NewTask = () => {
             upsert: false,
           });
 
-      console.log("img uploaded");
-
       if (imageError) {
         setIsLoading(false);
-        console.log("Failed image upload!!!!!!!!!!!!!!!!!!");
+        console.log("Failed image upload!");
       }
 
       const { error: supabaseError } = await supabaseClient
@@ -52,7 +54,9 @@ const NewTask = () => {
         .insert({
           title: values.title,
           description: values.description,
-          attachment_url: imageData.path,
+          assignee: values.assignee,
+          tag: values.tag,
+          attachment_url: imageData?.path,
         });
 
       if (supabaseError) {
@@ -75,6 +79,7 @@ const NewTask = () => {
       description: "",
       assignee: "cb689f5f-b1de-4334-893e-3842499bdda0",
       attachment: null,
+      tag: "dev",
     },
   });
 
@@ -99,8 +104,22 @@ const NewTask = () => {
           className="input"
           id="attachment"
           type="file"
-          {...register("attachment", { required: true })}
+          {...register("attachment")}
         />
+
+        <Select options={tags} {...register("tag")} />
+
+        {users && (
+          <Select
+            options={users.map((user) => ({
+              id: user.id,
+              value: user.id,
+              label: user.id,
+            }))}
+            {...register("assignee")}
+          />
+        )}
+
         <Button
           type="submit"
           className="main-btn"
