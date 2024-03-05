@@ -86,17 +86,17 @@ const NewTask = () => {
           onSubmit(values);
         })}
       >
-        <input
+        <Input
           placeholder="Title"
           type="text"
           {...register("title", { required: true })}
         />
-        <input
+        <Input
           placeholder="Description"
           type="textarea"
           {...register("description", { required: true })}
         />
-        <input
+        <Input
           id="attachment"
           type="file"
           {...register("attachment", { required: true })}

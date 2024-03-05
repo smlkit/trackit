@@ -1,21 +1,21 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-type InputProps = {
-  placeholder?: string;
-  type: string;
-};
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Input = ({ placeholder, type }: InputProps) => {
-  if (type === "textarea")
-    return <textarea placeholder={placeholder} className="input" />;
-  return (
-    <input
-      type={type}
-      accept="image/*"
-      placeholder={placeholder}
-      className="input"
-    />
-  );
-};
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, disabled, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={className}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+
+Input.displayName = "Input";
 
 export default Input;
