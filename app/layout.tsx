@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SupabaseProvider>
           <UserProvider>
-            <main className="main-container">{children}</main>
+            <div className="w-full h-full">{children}</div>
           </UserProvider>
         </SupabaseProvider>
       </body>

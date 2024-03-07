@@ -12,7 +12,7 @@ body,
 
 @layer components {
   .main-container {
-    @apply flex justify-center flex-1 h-full bg-dark pl-12 pt-16;
+    @apply flex justify-center flex-1 h-full w-full bg-dark pl-12 pt-16;
   }
 
   .sidebar {
