@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { FaRegCircleUser as AccountIcon } from "react-icons/fa6";
 import { LuLayoutDashboard as DashboardIcon } from "react-icons/lu";
@@ -15,15 +15,14 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ children }: SidebarProps) => {
-  const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const pathname = usePathname();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    router.refresh();
 
     if (error) {
+      // TODO: add toast
       console.log(error.message);
     }
   };

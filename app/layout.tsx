@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Sidebar from "@/components/Sidebar";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import "./globals.css";
@@ -23,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SupabaseProvider>
           <UserProvider>
-            <Sidebar>{children}</Sidebar>
+            <main className="h-full">{children}</main>
           </UserProvider>
         </SupabaseProvider>
       </body>

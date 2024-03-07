@@ -5,7 +5,7 @@ import {
   useSessionContext,
   useSupabaseClient,
 } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 
@@ -19,6 +19,8 @@ const Login = () => {
       router.refresh();
     }
   }, [session, router]);
+
+  if (session) return redirect("/dashboard");
 
   return (
     <Auth
