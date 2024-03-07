@@ -7,11 +7,11 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import uniqid from "uniqid";
 
 import { useUserContext } from "@/hooks/useUserContext";
+import useGetUsers from "@/hooks/useGetUsers";
 import Input from "@/components/Input";
 import Button from "@/components/Botton";
 import Select from "@/components/Select";
 import { tags } from "../../../shared/tags";
-import useGetUsers from "@/hooks/useGetUsers";
 
 const NewTask = () => {
   const supabaseClient = useSupabaseClient();
@@ -19,11 +19,8 @@ const NewTask = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { users } = useGetUsers();
-  console.log(users);
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
-    console.log(values);
-    // return;
     try {
       setIsLoading(true);
       console.log("press submit");
@@ -84,8 +81,11 @@ const NewTask = () => {
   });
 
   return (
-    <div>
-      <h1>NewTask</h1>
+    <div className="w-full">
+      <div className="pb-8">
+        <h1 className="header-1">New Task</h1>
+        <p className="p">Enter task details below.</p>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
         <Input
           className="input"

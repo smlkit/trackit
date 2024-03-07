@@ -11,9 +11,8 @@ body,
 }
 
 @layer components {
-  /* main */
   .main-container {
-    @apply flex flex-1 h-full bg-dark;
+    @apply flex flex-1 h-full bg-dark pl-12 pt-16;
   }
 
   .sidebar {
@@ -29,10 +28,18 @@ body,
   }
 
   .input {
-    @apply bg-transparent text-main-text w-80 block px-4 py-3 rounded-lg border border-solid border-secondary-text focus:outline-none;
+    @apply bg-transparent text-main-text w-96 block px-4 py-3 rounded-lg border border-solid border-secondary-text focus:outline-none;
   }
 
   .main-btn {
-    @apply bg-blue-accent text-main-text w-80 block px-4 py-3 rounded-lg focus:outline-none hover:opacity-90 transition;
+    @apply bg-blue-accent text-main-text w-96 block px-4 py-3 rounded-lg focus:outline-none hover:opacity-90 transition;
+  }
+
+  .header-1 {
+    @apply text-main-text text-2xl font-semibold;
+  }
+
+  .p {
+    @apply text-secondary-text text-base font-light;
   }
 }
