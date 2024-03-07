@@ -23,25 +23,32 @@ const Login = () => {
   if (session) return redirect("/dashboard");
 
   return (
-    <Auth
-      theme="dark"
-      magicLink
-      providers={[]}
-      supabaseClient={supabaseClient}
-      appearance={{
-        theme: ThemeSupa,
-        variables: {
-          default: {
-            colors: {
-              brand: "#4361EE",
-              brandAccent: "#4361EE",
-              inputBorder: "#4361EE",
-              inputBackground: "#4361EE",
+    <div className="auth-form">
+      <h1 className="header-1">Welcome back!</h1>
+      <p className="p pb-6">Enter your details below to login.</p>
+      <Auth
+        theme="dark"
+        magicLink
+        providers={[]}
+        supabaseClient={supabaseClient}
+        appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: "#4361EE",
+                brandAccent: "#4361EE",
+                inputBorder: "#4361EE",
+                inputBackground: "#4361EE",
+                inputLabelText: "#8189B0",
+                anchorTextColor: "#8189B0",
+                anchorTextHoverColor: "#4361EE",
+              },
             },
           },
-        },
-      }}
-    />
+        }}
+      />
+    </div>
   );
 };
 
