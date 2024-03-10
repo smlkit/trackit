@@ -20,11 +20,11 @@ body,
   }
 
   .sidebar__item {
-    @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-blue-accent transition py-1 text-main-text;
+    @apply flex flex-row h-auto items-center w-full gap-x-4 text-lg font-medium cursor-pointer hover:text-blue-accent transition py-1 text-main-text;
   }
 
   .sidebar__item-logout {
-    @apply flex flex-row h-auto items-center w-full gap-x-4 font-medium cursor-pointer hover:text-status-red transition py-1 text-main-text;
+    @apply flex flex-row h-auto items-center w-full gap-x-4 text-lg font-medium cursor-pointer hover:text-status-red transition py-1 text-main-text;
   }
 
   .auth-form {
@@ -45,5 +45,29 @@ body,
 
   .p {
     @apply text-secondary-text text-base font-light;
+  }
+
+  .task-card {
+    @apply bg-lighter flex flex-col justify-between w-80 h-56 p-6 rounded-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/50 transition;
+  }
+
+  .task-card__title {
+    @apply text-main-text font-bold text-lg;
+  }
+
+  .task-card__date {
+    @apply text-secondary-text text-sm font-light text-nowrap pb-3 flex items-center gap-x-1;
+  }
+
+  .task-card__status {
+    @apply bg-status-green rounded-full w-2.5 h-2.5;
+  }
+
+  .task-card__description {
+    @apply text-main-text pb-4 leading-5 font-light;
+  }
+
+  .task-card__tag {
+    @apply text-blue-accent;
   }
 }
