@@ -114,7 +114,7 @@ const NewTask = () => {
             options={users.map((user) => ({
               id: user.id,
               value: user.id,
-              label: user.id,
+              label: user.full_name,
             }))}
             {...register("assignee")}
           />

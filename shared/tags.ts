@@ -11,7 +11,7 @@ export const tags = [
   },
   {
     id: 2,
-    value: "qa",
+    value: "QA",
     label: "QA",
   },
   {

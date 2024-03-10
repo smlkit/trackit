@@ -1,32 +1,32 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
-import { User } from "@/types";
+import { Task } from "@/types";
 
-const useGetUsers = () => {
+const useGetTasks = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [users, setUsers] = useState<User[] | undefined>(undefined);
+  const [tasks, setTasks] = useState<Task[] | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
 
   useEffect(() => {
     setIsLoading(true);
 
-    const fetchUsers = async () => {
-      const { data, error } = await supabaseClient.from("users").select("*");
+    const fetchTasks = async () => {
+      const { data, error } = await supabaseClient.from("tasks").select("*");
 
       if (error) {
         // TODO: add toast
         setIsLoading(false);
       }
 
-      setUsers(data as User[]);
+      setTasks(data as Task[]);
       setIsLoading(false);
     };
 
-    fetchUsers();
+    fetchTasks();
   }, [supabaseClient]);
 
-  return useMemo(() => ({ isLoading, users }), [isLoading, users]);
+  return useMemo(() => ({ isLoading, tasks }), [isLoading, tasks]);
 };
 
-export default useGetUsers;
+export default useGetTasks;
